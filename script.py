@@ -94,10 +94,14 @@ def cascade(delay, time, start_time):
             expected[row][i] = add_time(row, i, delay)
 
 
-
 delay = input("How much is the bus delayed in minutes?: \n")
 time = input("Enter the expected time of the bus stop which is delayed: \n")
 start_time = input("Enter the start time of the bus which is delayed: \n")
+
+if len(time) < 5:
+    time = "0" + time
+if len(start_time) < 5:
+    start_time = "0" + start_time
 
 cascade(delay, time, start_time)
 print(expected)
