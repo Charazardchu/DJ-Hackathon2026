@@ -89,3 +89,4 @@ time = input("Enter the expected time of the bus stop which is delayed: \n")
 start_time = input("Enter the start time of the bus which is delayed: \n")
 
 cascade(delay, time, start_time)
+print(expected)
