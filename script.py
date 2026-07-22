@@ -57,14 +57,26 @@ timetable = [
 expected = timetable
 
 def add_time(x, y, sum):
+    string = "00:00"
     if expected[x][y] == "":
-        pass
+        string = expected[x][y]
     else:
-        a = int(expected[x][y][0:1])
-        b = int(expected[x][y][3:4])
-        b += sum
+        a = int(expected[x][y][0:2])
+        b = int(expected[x][y][3:5])
+        b += int(sum)
         a += b // 60
-        b %= b
+        a %= 24
+        b %= 60
+        if len(str(a)) == 1:
+            stra = "0" + str(a)
+        else:
+            stra = str(a)
+        if len(str(b)) == 1:
+            strb = "0" + str(b)
+        else:
+            strb = str(b)
+        string = stra + ":" + strb
+    return string
 
 def cascade(delay, time, start_time):
     row = -1
@@ -75,12 +87,11 @@ def cascade(delay, time, start_time):
             break
     for i in range(len(expected[row])):
         if expected[row][i] == time:
-            time_index = i
+            time_index = i - 1
+            break
     for i in range(len(expected[row])):
         if i > time_index:
-            add_time(row, i, delay)
-
-
+            expected[row][i] = add_time(row, i, delay)
 
 
 
@@ -90,3 +101,4 @@ start_time = input("Enter the start time of the bus which is delayed: \n")
 
 cascade(delay, time, start_time)
 print(expected)
+quit()
