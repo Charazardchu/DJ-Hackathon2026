@@ -54,12 +54,14 @@ timetable = [
 
 ]
 
+expected = timetable
+
 def add_time(x, y, sum):
-    if timetable[x][y] == "":
+    if expected[x][y] == "":
         pass
     else:
-        a = int(timetable[x][y][0:1])
-        b = int(timetable[x][y][3:4])
+        a = int(expected[x][y][0:1])
+        b = int(expected[x][y][3:4])
         b += sum
         a += b // 60
         b %= b
@@ -69,11 +71,16 @@ def add_time(x, y, sum):
 
 def cascade(delay, time, start_time):
     row = -1
-    for i in range(len(timetable)):
-        if timetable[i][0] == start_time:
+    time_index = -1
+    for i in range(len(expected)):
+        if expected[i][0] == start_time:
             row = i
             break
-    for i in range(len(timetable[row])):
-        add_time(row, i, delay)
+    for i in range(len(expected[row])):
+        if expected[row][i] == time:
+            time_index = i
+    for i in range(len(expected[row])):
+        if i > time_index:
+            add_time(row, i, delay)
 
-#hello
+
