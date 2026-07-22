@@ -66,9 +66,6 @@ def add_time(x, y, sum):
         a += b // 60
         b %= b
 
-
-
-
 def cascade(delay, time, start_time):
     row = -1
     time_index = -1
@@ -84,3 +81,11 @@ def cascade(delay, time, start_time):
             add_time(row, i, delay)
 
 
+
+
+
+delay = input("How much is the bus delayed in minutes?: \n")
+time = input("Enter the expected time of the bus stop which is delayed: \n")
+start_time = input("Enter the start time of the bus which is delayed: \n")
+
+cascade(delay, time, start_time)
